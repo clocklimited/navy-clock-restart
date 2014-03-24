@@ -1,5 +1,5 @@
 var createRestart = require('./lib/restart')
-  , upstart = require('upstart')
+  , upstart = require('./lib/upstart')()
   , restart = createRestart(upstart)
 
 module.exports = function clockRestart() {

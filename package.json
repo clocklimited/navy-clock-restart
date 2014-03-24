@@ -17,7 +17,6 @@
     "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage"
   },
   "dependencies": {
-    "upstart": "0.0.0"
   },
   "devDependencies": {
     "istanbul": "~0.2.3",

@@ -1,5 +1,5 @@
 var sinon = require('sinon')
-  , upstart = require('upstart')
+  , upstart = require('../../lib/upstart')()
   , createRestart = require('../../lib/restart')
 
 describe('restart', function () {
@@ -15,8 +15,8 @@ describe('restart', function () {
       , restartStub = sinon.stub(upstart, 'restart')
       , restart = createRestart(upstart)
 
-    statusStub.callsArgWith(1, null, null, 1)
-    restartStub.callsArgWith(1, null, null, 2)
+    statusStub.callsArgWith(1, null, 1)
+    restartStub.callsArgWith(1, null, 2)
 
     restart(context, data, function () {
       emitSpy.callCount.should.equal(7)
@@ -41,9 +41,9 @@ describe('restart', function () {
       , restartStub = sinon.stub(upstart, 'restart')
       , restart = createRestart(upstart)
 
-    statusStub.callsArgWith(1, null, null, 1)
-    statusStub.onFirstCall().callsArgWith(1, null, null, null)
-    restartStub.callsArgWith(1, null, null, 2)
+    statusStub.callsArgWith(1, null, 1)
+    statusStub.onFirstCall().callsArgWith(1, null, null)
+    restartStub.callsArgWith(1, null, 2)
 
     restart(context, data, function () {
       emitSpy.callCount.should.equal(6)
@@ -67,19 +67,23 @@ describe('restart', function () {
           }
       , statusStub = sinon.stub(upstart, 'status')
       , restartStub = sinon.stub(upstart, 'restart')
+      , startStub = sinon.stub(upstart, 'start')
       , restart = createRestart(upstart)
 
-    statusStub.callsArgWith(1, null, null, 1)
-    statusStub.onFirstCall().callsArgWith(1, null, null, null)
-    restartStub.callsArgWith(1, null, null, 2)
+    statusStub.callsArgWith(1, null, 1)
+    statusStub.onFirstCall().callsArgWith(1, null, null)
+    restartStub.callsArgWith(1, null, 2)
+    startStub.callsArgWith(1, null, 2)
 
     restart(context, data, function () {
       emitSpy.callCount.should.equal(7)
       statusStub.calledThrice.should.equal(true)
-      restartStub.calledThrice.should.equal(true)
+      restartStub.calledTwice.should.equal(true)
+      startStub.calledOnce.should.equal(true)
 
       statusStub.restore()
       restartStub.restore()
+      startStub.restore()
 
       done()
     })
