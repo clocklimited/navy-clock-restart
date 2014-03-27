@@ -19,8 +19,8 @@ module.exports = function clockRestart() {
 
   function init(context, callback) {
     var data =
-          { environment: context.orderArgs[0]
-          , forceStart: context.orderArgs[1] === 'force'
+          { environment: context.environment
+          , forceStart: context.orderArgs[0] === 'force'
           , services: context.appData.services
           }
 
