@@ -23,13 +23,14 @@ describe('clock-restart', function () {
         { appId: 'myapp'
         , environment: 'staging'
         , orderArgs: [ ]
-        , appData: { services: [ 'site', 'admin', 'api' ] }
+        , appData: { client: 'client', services: [ 'site', 'admin', 'api' ] }
         }
 
     steps.init(context, function (error, data) {
       should.not.exist(error)
-      Object.keys(data).length.should.equal(3)
+      Object.keys(data).length.should.equal(4)
       data.environment.should.equal(context.environment)
+      data.client.should.equal(context.appData.client)
       data.services.length.should.equal(context.appData.services.length)
       data.forceStart.should.equal(false)
       done()

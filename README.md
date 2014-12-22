@@ -8,12 +8,14 @@ It does the following actions:
 
 This order assumes that the following configuration keys have been added to the [Admiral](http://github.com/microadam/navy-admiral) for the application you are trying to prepare:
 
+* client: Shortname of the client this project belongs to
 * services: Object containing thes services that this application has. The key forms the suffix of the name of the upstart jobs e.g node-myproject-staging-<-service->. The value is the relative path to the start script of the service
 
 An example [Admiral](http://github.com/microadam/navy-admiral) application configuration might look like:
 
     { "name": "My Application"
     , "appId": "myApp"
+    , "client": "client"
     , "services":
       { "admin": "admin/app.js"
       , "site": "site/app.js"

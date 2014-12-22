@@ -22,6 +22,7 @@ module.exports = function clockRestart() {
           { environment: context.environment
           , forceStart: context.orderArgs[0] === 'force'
           , services: context.appData.services
+          , client: context.appData.client
           }
 
     callback(null, data)
