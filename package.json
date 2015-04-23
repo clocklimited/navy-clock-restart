@@ -1,7 +1,7 @@
 {
   "name": "navy-clock-restart",
   "description": "Navy Order to restart a Clock project once deployed",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:clocklimited/navy-clock-restart"
